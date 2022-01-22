@@ -29,16 +29,6 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('article_categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('parent_id')->nullable()->unsigned();
-            $table->string('slug')->unique();
-            $table->string('nom');
-            $table->text('description')->nullable();
-            $table->integer('order')->nullable()->unsigned();
-            $table->string('seo_title')->nullable();
-            $table->text('seo_description')->nullable();
-        });
     }
 
     /**
@@ -49,6 +39,5 @@ class CreateArticlesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('articles');
-        Schema::dropIfExists('article_categories');
     }
 }
