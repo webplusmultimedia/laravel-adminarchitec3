@@ -6,10 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+
 use Terranet\Administrator\Annotations\ScopeFilter;
+use Terranet\Administrator\Services\MediaLibraryProvider;
 use Terranet\Administrator\Traits\Slug\HasSlug;
 
 
@@ -32,6 +34,25 @@ class Article extends Model implements HasMedia
 
     const ETAT_PUBLIE = 'publie';
     const ETAT_BROUILLON = 'brouillon';
+
+    public static function bootHasMediaTrait()
+    {
+        static::deleting(function (HasMedia $entity) {
+            if ($entity->shouldDeletePreservingMedia()) {
+                return;
+            }
+
+            if (in_array(SoftDeletes::class, class_uses_recursive($entity))) {
+                if (! $entity->forceDeleting) {
+                    return;
+                }
+            }
+
+            $entity->media()->get()->each(function ($media) use ($entity) {
+                MediaLibraryProvider::forModel($entity)->detach($media->id);
+            });
+        });
+    }
 
     /*
      * Relations

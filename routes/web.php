@@ -13,6 +13,54 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', 'ArticleController@home')->name('home');
+
+
+
+    Route::group(
+        [
+            'prefix' => 'contact',
+        ],
+        function () {
+            Route::get('', [
+                'as'   => 'contact.index',
+                'uses' => 'ContactController@index'
+            ]);
+
+            Route::post('', [
+                'as'   => 'contact.send',
+                'uses' => 'ContactController@send'
+            ]);
+        }
+    );
+
+
+    Route::group(
+        [
+            'prefix' => 'blog',
+        ],
+        function () {
+            Route::get('', [
+                'as'   => 'blog.index',
+                'uses' => 'ArticleController@blogIndex'
+            ]);
+            Route::get('categorie/{slug}', [
+                'as'   => 'blog.category',
+                'uses' => 'ArticleController@blogCategorie'
+            ]);
+            Route::get('{slug}', [
+                'as'   => 'blog.show',
+                'uses' => 'ArticleController@blogDetail'
+            ]);
+        }
+    );
+
+
+
+
+
+    // Catch all route : à mettre en dernier
+    Route::get('{slug}', [
+        'as'   => 'article',
+        'uses' => 'ArticleController@index'
+    ]);
