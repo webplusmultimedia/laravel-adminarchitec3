@@ -6408,16 +6408,16 @@
         },
         {
             "name": "webplusmultimedia/adminarchitect",
-            "version": "v3.1.613",
+            "version": "v3.1.615",
             "source": {
                 "type": "git",
                 "url": "git@github.com:webplusmultimedia/adminarchitect.git",
-                "reference": "3eeafc3ab0df9187727bb2e5dc202826e2833ef8"
+                "reference": "e4d0cb03d3a8528e870b651100404c551bfcc1ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webplusmultimedia/adminarchitect/zipball/3eeafc3ab0df9187727bb2e5dc202826e2833ef8",
-                "reference": "3eeafc3ab0df9187727bb2e5dc202826e2833ef8",
+                "url": "https://api.github.com/repos/webplusmultimedia/adminarchitect/zipball/e4d0cb03d3a8528e870b651100404c551bfcc1ba",
+                "reference": "e4d0cb03d3a8528e870b651100404c551bfcc1ba",
                 "shasum": ""
             },
             "require": {
@@ -6478,10 +6478,10 @@
             ],
             "description": "Active Admin for Laravel.",
             "support": {
-                "source": "https://github.com/webplusmultimedia/adminarchitect/tree/v3.1.613",
+                "source": "https://github.com/webplusmultimedia/adminarchitect/tree/v3.1.615",
                 "issues": "https://github.com/webplusmultimedia/adminarchitect/issues"
             },
-            "time": "2022-01-23T14:11:07+00:00"
+            "time": "2022-02-17T13:01:16+00:00"
         },
         {
             "name": "webplusmultimedia/menus",
